@@ -3,10 +3,15 @@ import express from "express";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import dotenv from "dotenv";
+import router from "./routes/auth/auth-routes.js";
+
+// Load env variables
+dotenv.config();
 
 // MongoDB connection
 mongoose
-  .connect(`${process.env.MONGO_URL}`)
+  .connect(process.env.MONGO_URL)
   .then(() => console.log("Hello World, Database is Connected"))
   .catch((error) => console.error(error));
 
@@ -31,6 +36,7 @@ app.use(
 
 app.use(cookieParser());
 app.use(express.json());
+app.use("/api/auth", router);
 
 // Sample route
 app.get("/", (req, res) => {
