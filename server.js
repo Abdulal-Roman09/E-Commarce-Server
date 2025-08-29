@@ -1,31 +1,41 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const cookiesParser = require("cookie-parser");
-const cors = require("cors");
+// server.js
+import express from "express";
+import mongoose from "mongoose";
+import cookieParser from "cookie-parser";
+import cors from "cors";
+
+// MongoDB connection
 mongoose
-  .connect(
-    `mongodb+srv://E-Commarce:E-Commarce-Client@cluster0.1ssdisl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
-  )
-  .then(() => console.log("Hlw woruld,Data Base is Connected"))
-  .catch((error) => console.log(error));
+  .connect(`${process.env.MONGO_URL}`)
+  .then(() => console.log("Hello World, Database is Connected"))
+  .catch((error) => console.error(error));
+
 const app = express();
 const PORT = process.env.PORT || 8000;
 
+// Middlewares
 app.use(
   cors({
     origin: "http://localhost:5173",
     methods: ["GET", "POST", "DELETE", "PUT"],
-    alloedHeaders: [
+    allowedHeaders: [
       "Content-Type",
-      "Authrization",
+      "Authorization",
       "Cache-Control",
-      "Expirse",
-      "pragma ",
+      "Expires",
+      "Pragma",
     ],
     credentials: true,
   })
 );
 
-app.use(cookiesParser());
+app.use(cookieParser());
 app.use(express.json());
-app.listen(PORT, () => console.log(`server is Running ${PORT}`));
+
+// Sample route
+app.get("/", (req, res) => {
+  res.send("Server is running!");
+});
+
+// Start server
+app.listen(PORT, () => console.log(`Server is running at port ${PORT}`));
