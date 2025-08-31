@@ -95,3 +95,4 @@ export const logOut = async (req, res) => {
     message: "logged out successfully!",
   });
 };
+// middler waare
