@@ -63,7 +63,7 @@ export const loginUser = async (req, res) => {
         email: user.email,
         userName: user.userName,
       },
-      process.env.CLIENT_SECRET_KEY, // Make sure this is in .env
+     "CLIENT_SECRET_KEY", 
       { expiresIn: "60m" }
     );
 
