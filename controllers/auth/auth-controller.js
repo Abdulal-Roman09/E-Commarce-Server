@@ -63,7 +63,7 @@ export const loginUser = async (req, res) => {
         email: user.email,
         userName: user.userName,
       },
-     "CLIENT_SECRET_KEY", 
+      "CLIENT_SECRET_KEY",
       { expiresIn: "60m" }
     );
 
@@ -87,4 +87,11 @@ export const loginUser = async (req, res) => {
       message: "Some error occurred",
     });
   }
+};
+
+export const logOut = async (req, res) => {
+  res.clearCookie("token").json({
+    success: true,
+    message: "logged out successfully!",
+  });
 };
