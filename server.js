@@ -16,13 +16,13 @@ mongoose
   .catch((error) => console.error(error));
 
 const app = express();
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 3000;
 
 // Middlewares
 app.use(
   cors({
     origin: "http://localhost:5173",
-    methods: ["GET", "POST", "DELETE", "PUT"],
+    methods: ["GET", "POST", "DELETE", "PUT", "OPTIONS"],
     allowedHeaders: [
       "Content-Type",
       "Authorization",
